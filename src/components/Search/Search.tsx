@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import styles from "./Search.module.scss";
 import { ReactComponent as SearchIcon } from "assets/icon-search.svg";
 import { Button } from "components/Button";
@@ -8,23 +7,19 @@ interface SearchProps {
   onSubmit: (text: string) => void;
 }
 
+type FormFields = {
+  username: HTMLInputElement;
+};
+
 export const Search = ({ hasError, onSubmit }: SearchProps) => {
-  const searchRef = useRef<HTMLInputElement | null>(null);
-
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = (
+    event: React.FormEvent<HTMLFormElement & FormFields>
+  ) => {
     event.preventDefault();
+    const text = event.currentTarget.username.value;
 
-    console.log("searchRef", searchRef);
-    // проверяем существует ли текущий реф. если существует - вызываем пропс onSubmit
-    // и передаем ему текущее текстовое значение
-    const text = searchRef.current ? searchRef.current.value : "";
-    if (text) {
-      onSubmit(text);
-      // после вызова onSubmit очищаем форму, предварительно проверим, что такая
-      // сущность существует
-      if (searchRef.current) 
-      searchRef.current.value = "";
-    }
+    if (text) onSubmit(text);
+    event.currentTarget.reset();
   };
 
   return (
@@ -34,7 +29,6 @@ export const Search = ({ hasError, onSubmit }: SearchProps) => {
           <SearchIcon />
         </label>
         <input
-          ref={searchRef}
           type="text"
           className={styles.textField}
           id="search"
