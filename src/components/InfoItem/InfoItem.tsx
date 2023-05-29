@@ -27,11 +27,11 @@ export const InfoItem = ({ icon, text, isLink }: InfoItemProps) => {
             rel="noreferrer"
             className={styles.link}
           >
-            currentText
+            {currentText}
           </a>
-        ) : (
+        ) : 
           currentText
-        )}
+        }
       </div>
     </div>
   );
