@@ -1,5 +1,5 @@
 ## SPA приложение по поиску пользователей на GitHub
-mariagrom.github.io/devfinder/
+[mariagrom.github.io/devfinder/](https://mariagrom.github.io/devfinder/)
 
 ### Основной функционал
 - поиск пользователей GitHub;
